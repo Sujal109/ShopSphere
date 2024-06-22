@@ -5,8 +5,10 @@ import fs from 'fs';
 
 const router = express.Router();
 
+// Use /tmp directory for uploads in a read-only file system environment
+const uploadsDir = '/tmp/uploads';
+
 // Ensure the 'uploads' directory exists
-const uploadsDir = 'uploads';
 if (!fs.existsSync(uploadsDir)) {
     fs.mkdirSync(uploadsDir);
 }
