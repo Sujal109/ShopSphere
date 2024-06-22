@@ -19,7 +19,7 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true}));
 app.use(cors({
-    origin: 'https://shop-sphere-one.vercel.app'
+    origin: 'https://shop-sphere-theta.vercel.app'
   }));
 //cookie parser middleware
 app.use(cookieParser());
