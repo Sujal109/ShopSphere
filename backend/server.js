@@ -14,7 +14,7 @@ const port = process.env.PORT || 5000 ;
 
 connectDB(); 
 const app = express();
-app.use(cors());
+app.use(cors();
 //body parser middleware
 app.use(express.json());
 app.use(express.urlencoded({ extended: true}));
@@ -36,7 +36,8 @@ const __dirname = path.resolve();
 app.use('/uploads', express.static(path.join(__dirname, '/uploads')))
 
 app.get('/', (req, res) => {
-res.json('API is running.. .', process.env.JWT_SECRET)
+    res.send('API is running.. .')
+    console.log(process.env.PAYPAL_CLIENT_ID)
 });
 
 app.use(notFound);
