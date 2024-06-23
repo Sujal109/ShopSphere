@@ -1,3 +1,4 @@
+import cors from 'cors';
 import path from 'path';
 import express from "express";
 import dotenv from 'dotenv';
@@ -9,12 +10,17 @@ import productRoutes from './routes/productRoutes.js'
 import userRoutes from './routes/userRoutes.js'
 import orderRoutes from './routes/orderRoutes.js'
 import uploadRoutes from './routes/uploadRoutes.js'
-import cors from 'cors';
+
 const port = process.env.PORT || 5000 ; 
 
 connectDB(); 
 const app = express();
-app.use(cors());
+const corsOptions = {
+    origin: 'https://shop-sphere-theta.vercel.app/', // Replace with your frontend's URL
+    credentials: true, // This allows cookies to be sent with the requests
+  };
+  app.use(cors(corsOptions));
+  
 //body parser middleware
 app.use(express.json());
 app.use(express.urlencoded({ extended: true}));
