@@ -7,11 +7,11 @@ import { uploadOnCloudinary } from "../utils/cloudinary.js"; // Update the path 
 const router = express.Router();
 
 // Use /tmp directory for uploads in a read-only file system environment
-const uploadsDir = '/uploads';
+const uploadsDir = '/tmp/uploads';
 
 // Ensure the 'uploads' directory exists
 if (!fs.existsSync(uploadsDir)) {
-    fs.mkdirSync(uploadsDir);
+    fs.mkdirSync(uploadsDir, { recursive: true });
 }
 
 const storage = multer.diskStorage({
@@ -62,7 +62,7 @@ router.post('/', (req, res) => {
             if (cloudinaryResponse) {
                 res.send({
                     message: 'Image uploaded successfully',
-                    image: cloudinaryResponse.url,
+                    imageUrl: cloudinaryResponse.url,
                 });
             } else {
                 res.status(500).json({ message: 'Failed to upload image to Cloudinary' });
