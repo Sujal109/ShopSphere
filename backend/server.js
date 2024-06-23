@@ -16,7 +16,7 @@ const port = process.env.PORT || 5000 ;
 connectDB(); 
 const app = express();
 const corsOptions = {
-    origin: 'https://shop-sphere-theta.vercel.app/', // Replace with your frontend's URL
+    origin: 'https://shop-sphere-theta.vercel.app', // Replace with your frontend's URL
     credentials: true, // This allows cookies to be sent with the requests
   };
   app.use(cors(corsOptions));
