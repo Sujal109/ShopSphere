@@ -2,11 +2,12 @@ import path from 'path';
 import express from 'express';
 import multer from 'multer';
 import fs from 'fs';
+import { uploadOnCloudinary } from "../utils/cloudinary.js"; // Update the path as necessary
 
 const router = express.Router();
 
 // Use /tmp directory for uploads in a read-only file system environment
-const uploadsDir = '/tmp/uploads';
+const uploadsDir = '/uploads';
 
 // Ensure the 'uploads' directory exists
 if (!fs.existsSync(uploadsDir)) {
@@ -41,7 +42,7 @@ const upload = multer({
 });
 
 router.post('/', (req, res) => {
-    upload.single('image')(req, res, (err) => {
+    upload.single('image')(req, res, async (err) => {
         if (err instanceof multer.MulterError) {
             // A Multer error occurred when uploading.
             return res.status(400).json({ message: err.message });
@@ -55,10 +56,20 @@ router.post('/', (req, res) => {
             return res.status(400).json({ message: 'No file uploaded or invalid file type' });
         }
 
-        res.send({
-            message: 'Image uploaded',
-            image: `${req.file.path}`,
-        });
+        try {
+            const cloudinaryResponse = await uploadOnCloudinary(req.file.path);
+
+            if (cloudinaryResponse) {
+                res.send({
+                    message: 'Image uploaded successfully',
+                    image: cloudinaryResponse.url,
+                });
+            } else {
+                res.status(500).json({ message: 'Failed to upload image to Cloudinary' });
+            }
+        } catch (uploadErr) {
+            res.status(500).json({ message: 'An error occurred while uploading the image' });
+        }
     });
 });
 
