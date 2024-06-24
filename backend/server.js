@@ -15,7 +15,12 @@ const port = process.env.PORT || 5000 ;
 
 connectDB(); 
 const app = express();
-app.use(cors());
+const corsOptions = {
+  origin: 'https://shop-sphere-theta.vercel.app', // Replace with your frontend domain
+  credentials: true,
+};
+app.use(cors(corsOptions));
+
 //body parser middleware
 app.use(express.json());
 app.use(express.urlencoded({ extended: true}));
