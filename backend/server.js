@@ -16,6 +16,7 @@ const port = process.env.PORT || 5000 ;
 connectDB(); 
 const app = express();
 const corsOptions = {
+  origin: '*',
   credentials: true,
   methods: ['GET', 'HEAD', 'PUT', 'PATCH', 'POST', 'DELETE'],
   allowedHeaders: ['Content-Type', 'Authorization'],
