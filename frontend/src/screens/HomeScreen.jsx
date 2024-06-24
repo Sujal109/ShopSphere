@@ -6,11 +6,10 @@ import Message from '../components/Message';
 import Paginate from '../components/Paginate';
 import Meta from '../components/Meta';
 import { useGetProductsQuery } from '../slices/productsApiSlice';
-import ProductCarousel from '../components/ProductCarousel';
+
 
 const HomeScreen = () => {
   const { pageNumber, keyword } = useParams();
-  const { data, isLoading, error} = useGetProductsQuery({ keyword, pageNumber});
 
   return (
     <>
