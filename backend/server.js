@@ -18,6 +18,8 @@ const app = express();
 const corsOptions = {
   origin: 'https://shop-sphere-theta.vercel.app', // Replace with your frontend domain
   credentials: true,
+  methods: ['GET', 'HEAD', 'PUT', 'PATCH', 'POST', 'DELETE'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
 };
 app.use(cors(corsOptions));
 
