@@ -1,5 +1,5 @@
 // export const BASE_URL = process.env.NODE_ENV === 'development' ? 'http://localhost:3000' : '';
-export const BASE_URL = process.env.REACT_APP_API_BASE_URL || 'http://localhost:5000';
+export const BASE_URL = process.env.REACT_APP_API_BASE_URL
 export const PRODUCTS_URL = `${BASE_URL}/api/products`;
 export const USERS_URL = `${BASE_URL}/api/users`;
 export const ORDERS_URL = `${BASE_URL}/api/orders`;

@@ -2,7 +2,7 @@
     "rewrites": [
       {
         "source": "/api/(.*)",
-        "destination": "https://shop-sphere-backend.vercel.app/"
+        "destination": "https://shop-sphere-backend.vercel.app"
       }
     ]
   }

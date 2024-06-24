@@ -15,11 +15,7 @@ const port = process.env.PORT || 5000 ;
 
 connectDB(); 
 const app = express();
-const corsOptions = { 
-    credentials: true, // This allows cookies to be sent with the requests
-  };
-  app.use(cors());
-  
+app.use(cors());
 //body parser middleware
 app.use(express.json());
 app.use(express.urlencoded({ extended: true}));
